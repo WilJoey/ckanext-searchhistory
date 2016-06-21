@@ -33,8 +33,14 @@ class SearchHistoryPlugin(p.SingletonPlugin):
         except TypeError:
             # Web context not ready, eg paster command
             return search_results
-
-        if (tk.c and tk.c.user and tk.c.controller == 'package'
+        
+        #JOE#
+        #if (tk.c and tk.c.user and tk.c.controller == 'package'
+        #        and tk.c.action == 'search' and
+        #        ((q is not None and not q in ('', '*:*'))
+        #        or '+dataset_type:dataset' not in fq[0])):
+        
+        if (tk.c and tk.c.controller == 'package'
                 and tk.c.action == 'search' and
                 ((q is not None and not q in ('', '*:*'))
                 or '+dataset_type:dataset' not in fq[0])):

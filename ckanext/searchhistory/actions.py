@@ -27,14 +27,17 @@ def search_add(context, data_dict):
     :param params: Search query to add to history
     :type params: string
     '''
-    tk.check_access('search_history_add', context, data_dict)
+    #JOE#
+    #tk.check_access('search_history_add', context, data_dict)
+
     if db.search_history_table is None:
         db.init_db(context['model'])
 
     data, errors = df.validate(data_dict, schema_add, context)
 
     username = context.get('user')
-    user_id = new_authz.get_user_id_for_username(username, allow_none=False)
+    #JOE#
+    user_id = new_authz.get_user_id_for_username(username, allow_none=True)
 
     search_history = db.SearchHistory()
     search_history.params = data.get('params')
