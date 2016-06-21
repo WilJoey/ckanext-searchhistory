@@ -41,6 +41,9 @@ def search_add(context, data_dict):
 
     search_history = db.SearchHistory()
     search_history.params = data.get('params')
+    #JOE#
+    search_history.keyword = search_history.params['q']
+
     search_history.user_id = user_id
     session = context['session']
     session.add(search_history)

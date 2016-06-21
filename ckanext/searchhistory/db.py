@@ -30,10 +30,13 @@ def init_db(model):
     SearchHistory = _SearchHistory
     # We will just try to create the table.  If it already exists we get an
     # error but we can just skip it and carry on.
+
+    #JOE# add keyword
     sql = '''
                 CREATE TABLE ckanext_searchhistory (
                     id text NOT NULL,
                     params text,
+                    keyword text,
                     user_id text NOT NULL,
                     created timestamp without time zone
                 );
@@ -50,6 +53,7 @@ def init_db(model):
     search_history_table = sa.Table('ckanext_searchhistory', model.meta.metadata,
         sa.Column('id', types.UnicodeText, primary_key=True, default=make_uuid),
         sa.Column('params', types.UnicodeText, default=u''),
+        sa.Column('keyword', types.UnicodeText, default=u''),
         sa.Column('user_id', types.UnicodeText, default=u''),
         sa.Column('created', types.DateTime, default=datetime.datetime.utcnow),
     )
